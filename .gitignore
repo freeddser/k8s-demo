@@ -1,0 +1,30 @@
+
+# Folders
+_obj
+_test
+
+# Architecture specific extensions/prefixes
+*.exe
+*.test
+*.prof
+
+# Configuration file
+config.json
+
+# Log file
+*.log
+
+
+# PID file
+*.pid
+
+# Temp vim files
+*.swp
+
+# MAC file
+.DS_Store
+
+#Intellij files
+.idea
+*.iml
+

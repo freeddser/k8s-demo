@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: demosite
+  labels:
+    name: demosite
+spec:
+  replicas: 3 
+  selector:
+    name: demosite
+  template:
+    metadata:
+      labels:
+        name: demosite
+    spec:
+      containers:
+      - name: demosite
+        image: 192.168.1.11:5000/nginx-php:7.0-composer-k8s
+        env:
+        - name: GET_HOSTS_FROM
+          value: env
+        ports:
+        - containerPort: 80
