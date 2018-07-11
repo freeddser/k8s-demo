@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: traefik-ingress-lb2
+  namespace: gocluster
+  labels:
+    k8s-app: traefik-ingress-lb2
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress-lb2
+        name: traefik-ingress-lb
+    spec:
+      restartPolicy: Always
+      serviceAccountName: traefik-ingress2
+      containers:
+      - image: traefik
+        name: traefik-ingress-lb2
+        args:
+        - --web
+        - --kubernetes
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-ingress-service2
+  namespace: gocluster
+spec:
+  selector:
+    k8s-app: traefik-ingress-lb2
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 8490
+  type: NodePort
+

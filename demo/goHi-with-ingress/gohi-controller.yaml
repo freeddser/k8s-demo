@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: gohi
+  namespace: gocluster
+  labels:
+    name: gohi
+spec:
+  replicas: 3
+  selector:
+    name: gohi
+  template:
+    metadata:
+      labels:
+        name: gohi
+    spec:
+      containers:
+      - name: gohi
+        image: docker.io/scpman/gohi:v0.1
+        ports:
+        - containerPort: 9091
